@@ -30,7 +30,6 @@ export const TextGroup = ({ atom }: { atom: any }) => {
 };
 
 const TextGroupWrapper = styled.div`
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,7 +1,9 @@
 import { atom, useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 import React from "react";
 import styled from "styled-components";
 import { contentsAtomsAtom } from "../../lib/store";
+import { random } from "../../lib/utility";
 import { COLOR_MAIN, COLOR_SUB } from "../../styles/variables";
 import {
   SubTitleTextType,
@@ -12,19 +14,19 @@ import {
 export const AddButtons = ({ index }: { index: number }) => {
   const [contentsAtoms, setContentsAtoms] = useAtom(contentsAtomsAtom);
   const handleTitleButtonOnClick = () => {
-    const titleAtom = atom("");
+    const titleAtom = atomWithStorage(`title-${random()}`, "");
     const title = new TitleTextType(titleAtom);
     contentsAtoms.splice(index + 1, 0, title);
     setContentsAtoms([...contentsAtoms]);
   };
   const handleSubTitleButtonOnClick = () => {
-    const titleAtom = atom("");
+    const titleAtom = atomWithStorage(`subTitle-${random()}`, "");
     const title = new SubTitleTextType(titleAtom);
     contentsAtoms.splice(index + 1, 0, title);
     setContentsAtoms([...contentsAtoms]);
   };
   const handleTextGroupButtonOnClick = () => {
-    const titleAtom = atom([""]);
+    const titleAtom = atomWithStorage(`texts-${random()}`, [""]);
     const title = new TextGroupType(titleAtom);
     contentsAtoms.splice(index + 1, 0, title);
     setContentsAtoms([...contentsAtoms]);
