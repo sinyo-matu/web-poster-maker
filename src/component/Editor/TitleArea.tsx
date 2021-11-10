@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 import React from "react";
 import styled from "styled-components";
 import { titleAtom } from "../../lib/store";
+import { deriveFadeIn } from "../../styles/animation";
 import { Color } from "../../styles/Color";
 
 export const TitleArea = ({ atom }: { atom: typeof titleAtom }) => {
@@ -12,16 +13,22 @@ export const TitleArea = ({ atom }: { atom: typeof titleAtom }) => {
   };
 
   return (
-    <div>
+    <Wrapper>
       <AreaTitle>主标题</AreaTitle>
-      <Wrapper value={text.content} onChange={handleTextChange} />
-    </div>
+      <Input value={text.content} onChange={handleTextChange} />
+    </Wrapper>
   );
 };
 
-const Wrapper = styled.input`
+const Wrapper = deriveFadeIn(styled.div``);
+const Input = styled.input`
   box-sizing: border-box;
   width: 350px;
+  border-radius: 3px;
+  border: 1.5px solid ${Color.MAIN};
+  &:focus {
+    outline-color: ${Color.MAIN};
+  }
 `;
 
 const AreaTitle = styled.div`

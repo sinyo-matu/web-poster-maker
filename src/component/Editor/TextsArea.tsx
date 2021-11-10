@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { textsAtom } from "../../lib/store";
+import { deriveFadeIn } from "../../styles/animation";
 import { Color } from "../../styles/Color";
 
 export const TextsArea = ({ atom }: { atom: typeof textsAtom }) => {
@@ -15,17 +16,24 @@ export const TextsArea = ({ atom }: { atom: typeof textsAtom }) => {
     setTextContent(changedValue);
   };
   return (
-    <div>
+    <Wrapper>
       <AreaTitle>正文</AreaTitle>
-      <Wrapper value={textContent} onChange={handleTextsAreaOnChange} />
-    </div>
+      <TextArea value={textContent} onChange={handleTextsAreaOnChange} />
+    </Wrapper>
   );
 };
 
-const Wrapper = styled.textarea`
+const Wrapper = deriveFadeIn(styled.div``);
+
+const TextArea = styled.textarea`
   box-sizing: border-box;
   height: 100px;
   width: 350px;
+  border-radius: 3px;
+  border: 1.5px solid ${Color.MAIN};
+  &:focus {
+    outline-color: ${Color.MAIN};
+  }
 `;
 
 const AreaTitle = styled.div`

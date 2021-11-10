@@ -11,6 +11,7 @@ export const Editor = () => {
   const [contentsAtoms] = useAtom(contentsAtomsAtom);
   return (
     <Wrapper>
+      <AddButtons index={-1} />
       {
         // eslint-disable-next-line array-callback-return
         contentsAtoms.map((atom, i) => {
@@ -47,12 +48,12 @@ export const Editor = () => {
 };
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 100px;
-  gap: 30px;
 `;
 
 const InputCompoWrapper = styled.div`

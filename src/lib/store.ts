@@ -49,7 +49,7 @@ export const contentsAtomsAtom = atomWithStorage(
               const titleRaw = localStorage.getItem(key);
               const titleAtom: PrimitiveAtom<TitleProperty> = atomWithStorage(
                 key,
-                JSON.parse(titleRaw ? titleRaw : "")
+                JSON.parse(titleRaw ? titleRaw : " ")
               );
               return new TitleTextType(key, titleAtom);
             case "subTitle":
@@ -57,13 +57,13 @@ export const contentsAtomsAtom = atomWithStorage(
               const subTitleAtom: PrimitiveAtom<SubTitleProperty> =
                 atomWithStorage(
                   key,
-                  JSON.parse(subTitleRaw ? subTitleRaw : "")
+                  JSON.parse(subTitleRaw ? subTitleRaw : " ")
                 );
               return new SubTitleTextType(key, subTitleAtom);
             case "texts":
               const textsRaw = localStorage.getItem(key);
               const textsAtom: PrimitiveAtom<TextGroupProperty> =
-                atomWithStorage(key, JSON.parse(textsRaw ? textsRaw : ""));
+                atomWithStorage(key, JSON.parse(textsRaw ? textsRaw : " "));
               return new TextGroupType(key, textsAtom);
             default:
               const defaultAtom: PrimitiveAtom<TitleProperty> = atomWithStorage(

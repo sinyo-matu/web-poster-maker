@@ -10,7 +10,7 @@ export const Poster = () => {
   const [contentsAtoms] = useAtom(contentsAtomsAtom);
 
   return (
-    <Wrapper>
+    <Wrapper id="poster-root">
       <ContentWrapper>
         {
           // eslint-disable-next-line array-callback-return

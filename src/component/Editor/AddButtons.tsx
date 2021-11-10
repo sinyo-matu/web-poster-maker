@@ -1,9 +1,10 @@
 import { useAtom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
+import { atomWithStorage } from "../../lib/utility";
 import styled from "styled-components";
 import { contentsAtomsAtom } from "../../lib/store";
 import { random } from "../../lib/utility";
 import { Color } from "../../styles/Color";
+import { Button } from "../atom/Button";
 import {
   SubTitleTextType,
   TextGroupType,
@@ -47,19 +48,20 @@ export const AddButtons = ({ index }: { index: number }) => {
 const Wrapper = styled.div`
   position: relative;
   margin-top: 20px;
-  min-height: 10px;
+  min-height: 20px;
+  background-color: white;
   width: 350px;
   &:before {
     content: "";
     position: absolute;
     background-color: ${Color.MAIN};
-    height: 2px;
+    height: 1px;
     width: 100%;
-    top: 0;
+    top: 50%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
     z-index: 100;
-    transition: 0.2s;
+    transition: opacity 0.5s;
   }
   &:after {
     content: "+";
@@ -71,36 +73,38 @@ const Wrapper = styled.div`
     border: 1px solid ${Color.MAIN};
     color: ${Color.MAIN};
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    transition: 0.2s;
+    transform: translateY(-50%) translateX(-45%);
+    transition: opacity 0.5s;
     z-index: 101;
-  }
-  &:hover div {
-    height: 50px;
   }
 
   &:hover::after {
     opacity: 0;
+    z-index: -1;
   }
 
   &:hover::before {
     opacity: 0;
+    z-index: -1;
   }
 `;
 
 const ButtonsWrapper = styled.div`
-  background-color: ${Color.SUB};
-  height: 0px;
+  height: 30px;
   width: 350px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  transform: scaleY(0) scaleX(0);
+  opacity: 0;
   gap: 20px;
   transition: 0.5s;
   overflow: hidden;
+  ${Wrapper}:hover & {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1);
+  }
 `;
-
-const Button = styled.button``;
