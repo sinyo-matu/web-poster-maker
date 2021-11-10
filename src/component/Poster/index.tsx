@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { TextGroup } from "./TextGroup";
-import { COLOR_MAIN } from "../../styles/variables";
 import logo from "../../PH-Logo-R2.png";
+import { Color } from "../../styles/Color";
 import { useAtom } from "jotai";
 import { contentsAtomsAtom } from "../../lib/store";
 import { Title } from "./Title";
@@ -40,7 +40,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  border: 8px solid ${COLOR_MAIN};
+  border: 8px solid ${Color.MAIN};
 `;
 const ContentWrapper = styled.div`
   text-align: center;

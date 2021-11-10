@@ -3,7 +3,7 @@ import { atomWithStorage } from "jotai/utils";
 import styled from "styled-components";
 import { contentsAtomsAtom } from "../../lib/store";
 import { random } from "../../lib/utility";
-import { COLOR_MAIN, COLOR_SUB } from "../../styles/variables";
+import { Color } from "../../styles/Color";
 import {
   SubTitleTextType,
   TextGroupType,
@@ -52,7 +52,7 @@ const Wrapper = styled.div`
   &:before {
     content: "";
     position: absolute;
-    background-color: ${COLOR_MAIN};
+    background-color: ${Color.MAIN};
     height: 2px;
     width: 100%;
     top: 0;
@@ -68,8 +68,8 @@ const Wrapper = styled.div`
     background-color: white;
     border-radius: 50%;
     text-align: center;
-    border: 1px solid ${COLOR_MAIN};
-    color: ${COLOR_MAIN};
+    border: 1px solid ${Color.MAIN};
+    color: ${Color.MAIN};
     position: absolute;
     top: 0;
     left: 50%;
@@ -91,7 +91,7 @@ const Wrapper = styled.div`
 `;
 
 const ButtonsWrapper = styled.div`
-  background-color: ${COLOR_SUB};
+  background-color: ${Color.SUB};
   height: 0px;
   width: 350px;
   display: flex;

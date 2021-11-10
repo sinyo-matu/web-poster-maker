@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import styled from "styled-components";
 import { contentsAtomsAtom } from "../../lib/store";
-import { COLOR_MAIN } from "../../styles/variables";
+import { Color } from "../../styles/Color";
 
 export const DeleteButton = ({ index }: { index: number }) => {
   const [contentsAtoms, setContentsAtoms] = useAtom(contentsAtomsAtom);
@@ -14,10 +14,10 @@ export const DeleteButton = ({ index }: { index: number }) => {
 };
 
 const Wrapper = styled.div`
-  color: ${COLOR_MAIN};
+  color: ${Color.MAIN};
   height: 20px;
   width: 20px;
-  border: 1px solid ${COLOR_MAIN};
+  border: 1px solid ${Color.MAIN};
   border-radius: 50%;
   text-align: center;
   position: absolute;

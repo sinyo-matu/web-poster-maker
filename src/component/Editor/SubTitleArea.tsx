@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import React from "react";
 import styled from "styled-components";
 import { subTitleAtom } from "../../lib/store";
-import { COLOR_MAIN } from "../../styles/variables";
+import { Color } from "../../styles/Color";
 
 export const SubTitleArea = ({ atom }: { atom: typeof subTitleAtom }) => {
   const [property, setProperty] = useAtom(atom);
@@ -26,5 +26,5 @@ const Wrapper = styled.input`
 
 const AreaTitle = styled.div`
   font-size: 14px;
-  color: ${COLOR_MAIN};
+  color: ${Color.MAIN};
 `;

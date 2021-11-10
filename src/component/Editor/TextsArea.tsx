@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { textsAtom } from "../../lib/store";
-import { COLOR_MAIN } from "../../styles/variables";
+import { Color } from "../../styles/Color";
 
 export const TextsArea = ({ atom }: { atom: typeof textsAtom }) => {
   const [property, setProperty] = useAtom(atom);
@@ -30,5 +30,5 @@ const Wrapper = styled.textarea`
 
 const AreaTitle = styled.div`
   font-size: 14px;
-  color: ${COLOR_MAIN};
+  color: ${Color.MAIN};
 `;
