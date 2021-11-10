@@ -1,19 +1,20 @@
 import { useAtom } from "jotai";
 import React from "react";
 import styled from "styled-components";
+import { titleAtom } from "../../lib/store";
 import { COLOR_MAIN } from "../../styles/variables";
 
-export const TitleArea = ({ atom }: { atom: any }) => {
+export const TitleArea = ({ atom }: { atom: typeof titleAtom }) => {
   const [text, setText] = useAtom(atom);
 
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
+    setText({ ...text, content: event.target.value });
   };
 
   return (
     <div>
       <AreaTitle>主标题</AreaTitle>
-      <Wrapper value={text as string} onChange={handleTextChange} />
+      <Wrapper value={text.content} onChange={handleTextChange} />
     </div>
   );
 };

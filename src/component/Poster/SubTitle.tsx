@@ -1,12 +1,13 @@
 import { useAtom } from "jotai";
 import React from "react";
 import styled from "styled-components";
-export const SubTitle = ({ atom }: { atom: any }) => {
+import { subTitleAtom } from "../../lib/store";
+export const SubTitle = ({ atom }: { atom: typeof subTitleAtom }) => {
   const [content] = useAtom(atom);
   if (!content) {
     return null;
   }
-  return <Wrapper>・{content}</Wrapper>;
+  return <Wrapper>・{content.content}</Wrapper>;
 };
 
 const Wrapper = styled.div`

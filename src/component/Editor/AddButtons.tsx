@@ -1,6 +1,5 @@
-import { atom, useAtom } from "jotai";
+import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
-import React from "react";
 import styled from "styled-components";
 import { contentsAtomsAtom } from "../../lib/store";
 import { random } from "../../lib/utility";
@@ -14,20 +13,23 @@ import {
 export const AddButtons = ({ index }: { index: number }) => {
   const [contentsAtoms, setContentsAtoms] = useAtom(contentsAtomsAtom);
   const handleTitleButtonOnClick = () => {
-    const titleAtom = atomWithStorage(`title-${random()}`, "");
-    const title = new TitleTextType(titleAtom);
+    const key = `title-${random()}`;
+    const titleAtom = atomWithStorage(key, { content: "" });
+    const title = new TitleTextType(key, titleAtom);
     contentsAtoms.splice(index + 1, 0, title);
     setContentsAtoms([...contentsAtoms]);
   };
   const handleSubTitleButtonOnClick = () => {
-    const titleAtom = atomWithStorage(`subTitle-${random()}`, "");
-    const title = new SubTitleTextType(titleAtom);
+    const key = `subTitle-${random()}`;
+    const titleAtom = atomWithStorage(key, { content: "" });
+    const title = new SubTitleTextType(key, titleAtom);
     contentsAtoms.splice(index + 1, 0, title);
     setContentsAtoms([...contentsAtoms]);
   };
   const handleTextGroupButtonOnClick = () => {
-    const titleAtom = atomWithStorage(`texts-${random()}`, [""]);
-    const title = new TextGroupType(titleAtom);
+    const key = `texts-${random()}`;
+    const titleAtom = atomWithStorage(key, { content: "" });
+    const title = new TextGroupType(key, titleAtom);
     contentsAtoms.splice(index + 1, 0, title);
     setContentsAtoms([...contentsAtoms]);
   };

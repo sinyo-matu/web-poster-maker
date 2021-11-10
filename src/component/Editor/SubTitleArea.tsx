@@ -1,19 +1,20 @@
 import { useAtom } from "jotai";
 import React from "react";
 import styled from "styled-components";
+import { subTitleAtom } from "../../lib/store";
 import { COLOR_MAIN } from "../../styles/variables";
 
-export const SubTitleArea = ({ atom }: { atom: any }) => {
-  const [text, setText] = useAtom(atom);
+export const SubTitleArea = ({ atom }: { atom: typeof subTitleAtom }) => {
+  const [property, setProperty] = useAtom(atom);
 
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
+    setProperty({ ...property, content: event.target.value });
   };
 
   return (
     <div>
       <AreaTitle>副标题</AreaTitle>
-      <Wrapper value={text as string} onChange={handleTextChange} />
+      <Wrapper value={property.content} onChange={handleTextChange} />
     </div>
   );
 };

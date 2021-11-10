@@ -17,25 +17,25 @@ export const Editor = () => {
           switch (atom.kind) {
             case "titleText":
               return (
-                <InputCompoWrapper>
+                <InputCompoWrapper key={`${atom.atom}`}>
                   <DeleteButton index={i} />
-                  <TitleArea key={`${atom.atom}`} atom={atom.atom} />
+                  <TitleArea atom={atom.atom} />
                   <AddButtons index={i} />
                 </InputCompoWrapper>
               );
             case "subTitleText":
               return (
-                <InputCompoWrapper>
+                <InputCompoWrapper key={`${atom.atom}`}>
                   <DeleteButton index={i} />
-                  <SubTitleArea key={`${atom.atom}`} atom={atom.atom} />
+                  <SubTitleArea atom={atom.atom} />
                   <AddButtons index={i} />
                 </InputCompoWrapper>
               );
             case "textGroup":
               return (
-                <InputCompoWrapper>
+                <InputCompoWrapper key={`${atom.atom}`}>
                   <DeleteButton index={i} />
-                  <TextsArea key={`${atom.atom}`} atom={atom.atom} />
+                  <TextsArea atom={atom.atom} />
                   <AddButtons index={i} />
                 </InputCompoWrapper>
               );

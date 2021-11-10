@@ -1,31 +1,79 @@
-import { atom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
+import { PrimitiveAtom } from "jotai";
 import {
+  SubTitleProperty,
   SubTitleTextType,
+  TextGroupProperty,
   TextGroupType,
+  TitleProperty,
   TitleTextType,
 } from "../types/poster";
+import { atomWithStorage } from "./utility";
 
-export const textsAtom = atomWithStorage<string[]>("texts-init", [
-  "由于老板出国旅游不管员工\n先全部清仓大甩卖，半价！半价！全部半价！",
-  "本活动将持续到老板回来为止!!",
-]);
+const textsKey = `texts-init`;
+export const textsAtom = atomWithStorage<TextGroupProperty>(textsKey, {
+  content:
+    "由于老板出国旅游不管员工\n先全部清仓大甩卖，半价！半价！全部半价！\n\n本活动将持续到老板回来为止!!",
+});
+const titleKey = `title-init`;
+export const titleAtom = atomWithStorage<TitleProperty>(titleKey, {
+  content: "特价大优惠",
+});
+const subTitleKey = `subTitle-init`;
+export const subTitleAtom = atomWithStorage<SubTitleProperty>(subTitleKey, {
+  content: "半价！半价！全部半价！！",
+});
 
-export const titleAtom = atomWithStorage("title-init", "特价大优惠");
+const titleText = new TitleTextType(titleKey, titleAtom);
 
-export const subTitleAtom = atomWithStorage(
-  "subTitle-nit",
-  "半价！半价！全部半价！！"
+const subTitleText = new SubTitleTextType(subTitleKey, subTitleAtom);
+
+const textGroup = new TextGroupType(textsKey, textsAtom);
+
+export const contentsAtomsAtom = atomWithStorage(
+  "atoms",
+  [titleText, subTitleText, textGroup],
+  {
+    setItem: (key, newValue) => {
+      const contentKeys = newValue.map((type) => {
+        return type.key;
+      });
+      localStorage.setItem(key, JSON.stringify(contentKeys));
+    },
+    getItem: (key) => {
+      const contentKeys: string[] = JSON.parse(localStorage.getItem(key)!);
+      const types: (TitleTextType | SubTitleTextType | TextGroupType)[] =
+        contentKeys.map((key) => {
+          const keyPrefix = key.split("-")[0];
+          switch (keyPrefix) {
+            case "title":
+              const titleRaw = localStorage.getItem(key);
+              const titleAtom: PrimitiveAtom<TitleProperty> = atomWithStorage(
+                key,
+                JSON.parse(titleRaw ? titleRaw : "")
+              );
+              return new TitleTextType(key, titleAtom);
+            case "subTitle":
+              const subTitleRaw = localStorage.getItem(key);
+              const subTitleAtom: PrimitiveAtom<SubTitleProperty> =
+                atomWithStorage(
+                  key,
+                  JSON.parse(subTitleRaw ? subTitleRaw : "")
+                );
+              return new SubTitleTextType(key, subTitleAtom);
+            case "texts":
+              const textsRaw = localStorage.getItem(key);
+              const textsAtom: PrimitiveAtom<TextGroupProperty> =
+                atomWithStorage(key, JSON.parse(textsRaw ? textsRaw : ""));
+              return new TextGroupType(key, textsAtom);
+            default:
+              const defaultAtom: PrimitiveAtom<TitleProperty> = atomWithStorage(
+                key,
+                JSON.parse(localStorage.getItem(key)!)
+              );
+              return new TitleTextType(key, defaultAtom);
+          }
+        });
+      return types;
+    },
+  }
 );
-
-const titleTextAtom = new TitleTextType(titleAtom);
-
-const subTitleTextAtom = new SubTitleTextType(subTitleAtom);
-
-const textGroupAtom = new TextGroupType(textsAtom);
-
-export const contentsAtomsAtom = atomWithStorage("atoms", [
-  titleTextAtom,
-  subTitleTextAtom,
-  textGroupAtom,
-]);

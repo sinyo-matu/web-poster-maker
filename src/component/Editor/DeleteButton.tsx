@@ -1,5 +1,4 @@
 import { useAtom } from "jotai";
-import React from "react";
 import styled from "styled-components";
 import { contentsAtomsAtom } from "../../lib/store";
 import { COLOR_MAIN } from "../../styles/variables";
@@ -7,6 +6,7 @@ import { COLOR_MAIN } from "../../styles/variables";
 export const DeleteButton = ({ index }: { index: number }) => {
   const [contentsAtoms, setContentsAtoms] = useAtom(contentsAtomsAtom);
   const handleOnClick = () => {
+    localStorage.removeItem(contentsAtoms[index].key);
     contentsAtoms.splice(index, 1);
     setContentsAtoms([...contentsAtoms]);
   };

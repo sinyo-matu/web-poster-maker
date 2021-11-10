@@ -1,14 +1,14 @@
 import { useAtom } from "jotai";
-import React from "react";
 import styled from "styled-components";
-export const TextGroup = ({ atom }: { atom: any }) => {
-  const [texts] = useAtom(atom);
-  if (!texts) {
+import { textsAtom } from "../../lib/store";
+export const TextGroup = ({ atom }: { atom: typeof textsAtom }) => {
+  const [property] = useAtom(atom);
+  if (!property.content) {
     return null;
   }
   return (
     <TextGroupWrapper>
-      {(texts as string[]).map((text, i) => {
+      {property.content.split("\n\n").map((text, i) => {
         return (
           <Wrapper key={i}>
             {text.split("\n").map((subText, i) => {

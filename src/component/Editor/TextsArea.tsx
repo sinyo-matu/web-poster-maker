@@ -1,16 +1,18 @@
 import { useAtom } from "jotai";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { textsAtom } from "../../lib/store";
 import { COLOR_MAIN } from "../../styles/variables";
 
-export const TextsArea = ({ atom }: { atom: any }) => {
-  const [, setTexts] = useAtom(atom);
-  const [textContent] = useState();
+export const TextsArea = ({ atom }: { atom: typeof textsAtom }) => {
+  const [property, setProperty] = useAtom(atom);
+  const [textContent, setTextContent] = useState(property.content);
   const handleTextsAreaOnChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const changedValue = event.target.value;
-    setTexts(changedValue.split("\n\n"));
+    setProperty({ ...property, content: changedValue });
+    setTextContent(changedValue);
   };
   return (
     <div>
