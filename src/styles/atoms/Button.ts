@@ -12,6 +12,8 @@ interface ButtonPropers {
 export const Button = styled.button<ButtonPropers>`
   display: inline-block;
   background-color: ${(props) => (props.selected ? Color.MAIN : "white")};
+  width: 100%;
+  height: 100%;
   min-height: 20px;
   min-width: 20px;
   border: 1px solid ${Color.MAIN};

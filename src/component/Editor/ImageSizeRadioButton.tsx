@@ -49,6 +49,7 @@ export const ImageSizeRadioButton = ({
 
 const Wrapper = styled.div`
   width: 100px;
+  height: 30px;
   display: flex;
   flex-direction: row;
   justify-content: center;

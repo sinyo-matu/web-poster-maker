@@ -80,8 +80,9 @@ const Wrapper = styled.div`
   }
   &:after {
     content: "+";
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    text-align: center;
+    width: 25px;
     background-color: white;
     border-radius: 50%;
     text-align: center;

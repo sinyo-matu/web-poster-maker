@@ -29,7 +29,7 @@ export const DeleteButton = ({ index }: { index: number }) => {
   return (
     <Wrapper>
       <ButtonCompo type={"circle"} onClick={handleOnClick}>
-        -
+        −
       </ButtonCompo>
     </Wrapper>
   );
@@ -37,6 +37,8 @@ export const DeleteButton = ({ index }: { index: number }) => {
 
 const Wrapper = styled.div`
   position: absolute;
+  width: 25px;
+  height: 25px;
   top: 50%;
   left: -30px;
   transform: translateX(-50%) translateY(-50%);
