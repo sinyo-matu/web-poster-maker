@@ -11,6 +11,7 @@ export const SubTitle = ({ atom }: { atom: typeof subTitleAtom }) => {
 };
 
 const Wrapper = styled.div`
-  margin-top: 10px;
+  align-self: flex-start;
+  margin-bottom: 10px;
   font-size: calc(8px + 1vmin);
 `;

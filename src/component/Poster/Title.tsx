@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
 import styled from "styled-components";
 import { titleAtom } from "../../lib/store";
+import { Color } from "../../styles/Color";
 export const Title = ({ atom }: { atom: typeof titleAtom }) => {
   const [content] = useAtom(atom);
   if (!content) {
@@ -10,6 +11,8 @@ export const Title = ({ atom }: { atom: typeof titleAtom }) => {
 };
 
 const Wrapper = styled.div`
-  margin-top: 10px;
+  justify-self: center;
+  color: ${Color.MAIN};
+  margin-bottom: 10px;
   font-size: calc(10px + 2vmin);
 `;

@@ -4,8 +4,10 @@ import styled from "styled-components";
 import { contentsAtomsAtom } from "../../lib/store";
 import { random } from "../../lib/utility";
 import { Color } from "../../styles/Color";
-import { Button } from "../atom/Button";
+import { ButtonCompo } from "../ButtonCompo";
 import {
+  ImageProperty,
+  ImageType,
   SubTitleTextType,
   TextGroupType,
   TitleTextType,
@@ -34,12 +36,25 @@ export const AddButtons = ({ index }: { index: number }) => {
     contentsAtoms.splice(index + 1, 0, title);
     setContentsAtoms([...contentsAtoms]);
   };
+  const handleImageButtonClick = () => {
+    const key = `image-${random()}`;
+    const imageAtom = atomWithStorage<ImageProperty>(key, {
+      filename: "",
+      filePath: "",
+      size: "sm",
+    });
+    const image = new ImageType(key, imageAtom);
+    contentsAtoms.splice(index + 1, 0, image);
+    setContentsAtoms([...contentsAtoms]);
+  };
+
   return (
     <Wrapper>
       <ButtonsWrapper>
-        <Button onClick={handleTitleButtonOnClick}>主标题</Button>
-        <Button onClick={handleSubTitleButtonOnClick}>副标题</Button>
-        <Button onClick={handleTextGroupButtonOnClick}>正文</Button>
+        <ButtonCompo onClick={handleTitleButtonOnClick}>主标题</ButtonCompo>
+        <ButtonCompo onClick={handleSubTitleButtonOnClick}>副标题</ButtonCompo>
+        <ButtonCompo onClick={handleTextGroupButtonOnClick}>正文</ButtonCompo>
+        <ButtonCompo onClick={handleImageButtonClick}>图片</ButtonCompo>
       </ButtonsWrapper>
     </Wrapper>
   );

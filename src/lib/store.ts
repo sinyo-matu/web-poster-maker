@@ -1,5 +1,7 @@
 import { PrimitiveAtom } from "jotai";
 import {
+  ImageProperty,
+  ImageType,
   SubTitleProperty,
   SubTitleTextType,
   TextGroupProperty,
@@ -29,51 +31,61 @@ const subTitleText = new SubTitleTextType(subTitleKey, subTitleAtom);
 
 const textGroup = new TextGroupType(textsKey, textsAtom);
 
-export const contentsAtomsAtom = atomWithStorage(
-  "atoms",
-  [titleText, subTitleText, textGroup],
-  {
-    setItem: (key, newValue) => {
-      const contentKeys = newValue.map((type) => {
-        return type.key;
-      });
-      localStorage.setItem(key, JSON.stringify(contentKeys));
-    },
-    getItem: (key) => {
-      const contentKeys: string[] = JSON.parse(localStorage.getItem(key)!);
-      const types: (TitleTextType | SubTitleTextType | TextGroupType)[] =
-        contentKeys.map((key) => {
-          const keyPrefix = key.split("-")[0];
-          switch (keyPrefix) {
-            case "title":
-              const titleRaw = localStorage.getItem(key);
-              const titleAtom: PrimitiveAtom<TitleProperty> = atomWithStorage(
-                key,
-                JSON.parse(titleRaw ? titleRaw : " ")
-              );
-              return new TitleTextType(key, titleAtom);
-            case "subTitle":
-              const subTitleRaw = localStorage.getItem(key);
-              const subTitleAtom: PrimitiveAtom<SubTitleProperty> =
-                atomWithStorage(
-                  key,
-                  JSON.parse(subTitleRaw ? subTitleRaw : " ")
-                );
-              return new SubTitleTextType(key, subTitleAtom);
-            case "texts":
-              const textsRaw = localStorage.getItem(key);
-              const textsAtom: PrimitiveAtom<TextGroupProperty> =
-                atomWithStorage(key, JSON.parse(textsRaw ? textsRaw : " "));
-              return new TextGroupType(key, textsAtom);
-            default:
-              const defaultAtom: PrimitiveAtom<TitleProperty> = atomWithStorage(
-                key,
-                JSON.parse(localStorage.getItem(key)!)
-              );
-              return new TitleTextType(key, defaultAtom);
-          }
-        });
-      return types;
-    },
-  }
-);
+export const contentsAtomsAtom = atomWithStorage<
+  (TitleTextType | SubTitleTextType | TextGroupType | ImageType)[]
+>("atoms", [titleText, subTitleText, textGroup], {
+  setItem: (key, newValue) => {
+    const contentKeys = newValue.map((type) => {
+      return type.key;
+    });
+    localStorage.setItem(key, JSON.stringify(contentKeys));
+  },
+  getItem: (key) => {
+    const contentKeys: string[] = JSON.parse(localStorage.getItem(key)!);
+    const types: (
+      | TitleTextType
+      | SubTitleTextType
+      | TextGroupType
+      | ImageType
+    )[] = contentKeys.map((key) => {
+      const keyPrefix = key.split("-")[0];
+      switch (keyPrefix) {
+        case "title":
+          const titleRaw = localStorage.getItem(key);
+          const titleAtom: PrimitiveAtom<TitleProperty> = atomWithStorage(
+            key,
+            JSON.parse(titleRaw ? titleRaw : " ")
+          );
+          return new TitleTextType(key, titleAtom);
+        case "subTitle":
+          const subTitleRaw = localStorage.getItem(key);
+          const subTitleAtom: PrimitiveAtom<SubTitleProperty> = atomWithStorage(
+            key,
+            JSON.parse(subTitleRaw ? subTitleRaw : " ")
+          );
+          return new SubTitleTextType(key, subTitleAtom);
+        case "texts":
+          const textsRaw = localStorage.getItem(key);
+          const textsAtom: PrimitiveAtom<TextGroupProperty> = atomWithStorage(
+            key,
+            JSON.parse(textsRaw ? textsRaw : " ")
+          );
+          return new TextGroupType(key, textsAtom);
+        case "image":
+          const imageRaw = localStorage.getItem(key);
+          const imageAtom: PrimitiveAtom<ImageProperty> = atomWithStorage(
+            key,
+            JSON.parse(imageRaw ? imageRaw : " ")
+          );
+          return new ImageType(key, imageAtom);
+        default:
+          const defaultAtom: PrimitiveAtom<TitleProperty> = atomWithStorage(
+            key,
+            JSON.parse(localStorage.getItem(key)!)
+          );
+          return new TitleTextType(key, defaultAtom);
+      }
+    });
+    return types;
+  },
+});

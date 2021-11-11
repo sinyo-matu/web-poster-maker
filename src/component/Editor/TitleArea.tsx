@@ -20,7 +20,12 @@ export const TitleArea = ({ atom }: { atom: typeof titleAtom }) => {
   );
 };
 
-const Wrapper = deriveFadeIn(styled.div``);
+const Wrapper = deriveFadeIn(styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+`);
 const Input = styled.input`
   box-sizing: border-box;
   width: 350px;

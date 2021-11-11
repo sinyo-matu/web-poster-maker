@@ -23,7 +23,12 @@ export const TextsArea = ({ atom }: { atom: typeof textsAtom }) => {
   );
 };
 
-const Wrapper = deriveFadeIn(styled.div``);
+const Wrapper = deriveFadeIn(styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+`);
 
 const TextArea = styled.textarea`
   box-sizing: border-box;

@@ -3,12 +3,15 @@ import "./styles/App.scss";
 import { Poster } from "./component/Poster";
 import { Editor } from "./component/Editor";
 import styled from "styled-components";
-import { Button } from "./component/atom/Button";
+import { ButtonCompo } from "./component/ButtonCompo";
 import html2canvas from "html2canvas";
 
 function App() {
   const handleOnClick = async () => {
-    const canvas = await html2canvas(document.querySelector("#poster-root")!);
+    const canvas = await html2canvas(
+      document.querySelector("#poster-root")!,
+      {}
+    );
     const link = document.createElement("a");
     const date = new Date();
     link.download = `poster_${date.getFullYear()}-${
@@ -22,7 +25,7 @@ function App() {
       <div className="App-canvas">
         <Poster />
         <ButtonWrapper>
-          <Button onClick={handleOnClick}>下载</Button>
+          <ButtonCompo onClick={handleOnClick}>下载</ButtonCompo>
         </ButtonWrapper>
       </div>
       <div className="App-editor">
@@ -35,5 +38,5 @@ function App() {
 export default App;
 
 const ButtonWrapper = styled.div`
-  margin-top: 50px;
+  margin-top: 30px;
 `;

@@ -7,6 +7,7 @@ import { TextsArea } from "./TextsArea";
 import { TitleArea } from "./TitleArea";
 import { AddButtons } from "./AddButtons";
 import { DeleteButton } from "./DeleteButton";
+import { ImageArea } from "./ImageArea";
 export const Editor = () => {
   const [contentsAtoms] = useAtom(contentsAtomsAtom);
   return (
@@ -37,6 +38,14 @@ export const Editor = () => {
                 <InputCompoWrapper key={`${atom.atom}`}>
                   <DeleteButton index={i} />
                   <TextsArea atom={atom.atom} />
+                  <AddButtons index={i} />
+                </InputCompoWrapper>
+              );
+            case "image":
+              return (
+                <InputCompoWrapper key={`${atom.atom}`}>
+                  <DeleteButton index={i} />
+                  <ImageArea atom={atom.atom} />
                   <AddButtons index={i} />
                 </InputCompoWrapper>
               );

@@ -1,0 +1,153 @@
+import { PrimitiveAtom, useAtom } from "jotai";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import { deriveFadeIn, PopUp } from "../../styles/animation";
+import { Color } from "../../styles/Color";
+import { supabase } from "../../supabaseClient";
+import { ImageProperty } from "../../types/poster";
+import { downloadImage } from "../../lib/supabase";
+import { ImageSizeRadioButton } from "./ImageSizeRadioButton";
+import { deriveImageSize, IMAGE_SIZE } from "../../styles/Size";
+export const ImageArea = ({ atom }: { atom: PrimitiveAtom<ImageProperty> }) => {
+  const [property, setProperty] = useAtom(atom);
+  const [uploading, setUploading] = useState(false);
+  const [localUrl, setLocalUrl] = useState("");
+  useEffect(() => {
+    if (property.filePath) {
+      downloadImage(property.filePath, (url) => setLocalUrl(url));
+    }
+  }, [property.filePath]);
+
+  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      setUploading(true);
+      if (!event.target.files || event.target.files.length === 0) {
+        throw new Error("请选择需要上传的图片");
+      }
+      const file = event.target.files[0];
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `${fileName}`;
+
+      let { error: uploadError } = await supabase.storage
+        .from("poster-images")
+        .upload(filePath, file);
+      if (uploadError) {
+        throw uploadError;
+      }
+      setProperty({ ...property, filename: file.name, filePath: filePath });
+    } catch (error: any) {
+      alert(error.message);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleSizeSelected = (name: string) => {
+    let size: IMAGE_SIZE;
+    switch (name) {
+      case "sm":
+        size = "sm";
+        break;
+      case "md":
+        size = "md";
+        break;
+      case "lg":
+        size = "lg";
+        break;
+      default:
+        size = "md";
+    }
+    setProperty({ ...property, size: size });
+  };
+
+  return (
+    <FadeInWrapper>
+      <AreaTitle>
+        图片{property.filename ? `:${property.filename}` : null}
+      </AreaTitle>
+      {localUrl ? (
+        <ImagePreview
+          imageWidth={property.size}
+          src={localUrl}
+          alt="preview image"
+        />
+      ) : null}
+      <FileInputWrapper>
+        <FileInputLabel htmlFor={`${atom}`}>
+          {uploading ? "加载中" : "上传图片"}
+          <FileInput
+            id={`${atom}`}
+            type="file"
+            accept="image/*"
+            onChange={handleUpload}
+          />
+        </FileInputLabel>
+        <ImageSizeRadioButton onSelected={handleSizeSelected} />
+      </FileInputWrapper>
+    </FadeInWrapper>
+  );
+};
+
+const Wrapper = deriveFadeIn(styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  gap: 5px;
+`);
+
+const FadeInWrapper = deriveFadeIn(Wrapper);
+
+interface ImageProps {
+  imageWidth?: IMAGE_SIZE;
+}
+const ImagePreview = styled.img<ImageProps>`
+  width: ${(props) =>
+    props.imageWidth
+      ? deriveImageSize(props.imageWidth)
+      : deriveImageSize("md")}px;
+`;
+const AreaTitle = styled.div`
+  align-self: flex-start;
+  font-size: 14px;
+  color: ${Color.MAIN};
+`;
+const FileInputWrapper = styled.div`
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+interface LabelPropers {
+  clicked?: boolean;
+}
+const FileInputLabel = styled.label<LabelPropers>`
+  flex-grow: 1;
+  display: inline-block;
+  background-color: white;
+  min-height: 20px;
+  min-width: 20px;
+  padding: 5px;
+  border: 1px solid ${Color.MAIN};
+  border-radius: 9999px;
+  color: ${Color.MAIN};
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0px 0px 1px ${Color.MAIN};
+  transition: 0.2s;
+  ${(props) => (props.clicked ? PopUp : null)};
+  &:hover {
+    background-color: ${Color.MAIN};
+    color: white;
+    border-color: ${Color.MAIN};
+    box-shadow: 0px 0px 3px ${Color.MAIN};
+  }
+`;
+const FileInput = styled.input`
+  visibility: hidden;
+  position: absolute;
+`;
