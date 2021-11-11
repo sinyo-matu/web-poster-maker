@@ -40,4 +40,5 @@ const Wrapper = styled.div<WrapperProps>`
 `;
 const ImageView = styled.img`
   width: 100%;
+  margin-bottom: 10px;
 `;

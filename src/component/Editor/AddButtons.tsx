@@ -118,7 +118,6 @@ const ButtonsWrapper = styled.div`
   opacity: 0;
   gap: 20px;
   transition: 0.5s;
-  overflow: hidden;
   ${Wrapper}:hover & {
     opacity: 1;
     transform: scaleY(1) scaleX(1);

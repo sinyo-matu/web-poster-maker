@@ -62,7 +62,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin: 80px 0px;
 `;
 
 const InputCompoWrapper = styled.div`

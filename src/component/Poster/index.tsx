@@ -7,41 +7,61 @@ import { contentsAtomsAtom } from "../../lib/store";
 import { Title } from "./Title";
 import { SubTitle } from "./SubTitle";
 import { Image } from "./Image";
+import { ButtonCompo } from "../ButtonCompo";
+import html2canvas from "html2canvas";
 export const Poster = () => {
   const [contentsAtoms] = useAtom(contentsAtomsAtom);
-
+  const handleOnClick = async () => {
+    const canvas = await html2canvas(
+      document.querySelector("#poster-root")!,
+      {}
+    );
+    const link = document.createElement("a");
+    const date = new Date();
+    link.download = `poster_${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}.jpg`;
+    link.href = canvas.toDataURL();
+    link.click();
+  };
   return (
-    <Canvas id="poster-root">
-      <PosterRoot>
-        <ContentWrapper>
-          {
-            // eslint-disable-next-line array-callback-return
-            contentsAtoms.map((atom) => {
-              switch (atom.kind) {
-                case "titleText":
-                  return <Title key={`${atom.atom}`} atom={atom.atom} />;
-                case "subTitleText":
-                  return <SubTitle key={`${atom.atom}`} atom={atom.atom} />;
-                case "textGroup":
-                  return <TextGroup key={`${atom.atom}`} atom={atom.atom} />;
-                case "image":
-                  return <Image key={`${atom.atom}`} atom={atom.atom} />;
-              }
-            })
-          }
-        </ContentWrapper>
-        <Logo src={logo} alt="logo"></Logo>
-      </PosterRoot>
-    </Canvas>
+    <>
+      <Canvas id="poster-root">
+        <PosterRoot>
+          <ContentWrapper>
+            {
+              // eslint-disable-next-line array-callback-return
+              contentsAtoms.map((atom) => {
+                switch (atom.kind) {
+                  case "titleText":
+                    return <Title key={`${atom.atom}`} atom={atom.atom} />;
+                  case "subTitleText":
+                    return <SubTitle key={`${atom.atom}`} atom={atom.atom} />;
+                  case "textGroup":
+                    return <TextGroup key={`${atom.atom}`} atom={atom.atom} />;
+                  case "image":
+                    return <Image key={`${atom.atom}`} atom={atom.atom} />;
+                }
+              })
+            }
+          </ContentWrapper>
+          <Logo src={logo} alt="logo"></Logo>
+        </PosterRoot>
+      </Canvas>
+      <DownLoadButtonWrapper>
+        <ButtonCompo onClick={handleOnClick}>下载</ButtonCompo>
+      </DownLoadButtonWrapper>
+    </>
   );
 };
 
 const Canvas = styled.div`
   display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin: 50px 0px;
   width: 500px;
   min-height: 667px;
   padding: 50px 30px;
@@ -74,3 +94,5 @@ const Logo = styled.img`
   height: 1.5rem;
   margin: 10px 0px;
 `;
+
+const DownLoadButtonWrapper = styled.div``;
