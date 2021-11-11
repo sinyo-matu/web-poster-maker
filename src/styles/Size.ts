@@ -1,8 +1,8 @@
 export type IMAGE_SIZE = "sm" | "md" | "lg";
 
-const SM = 100;
-const MD = 150;
-const LG = 200;
+const SM = 250;
+const MD = 300;
+const LG = 400;
 
 export const deriveImageSize = (size: IMAGE_SIZE) => {
   switch (size) {

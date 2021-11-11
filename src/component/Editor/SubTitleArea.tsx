@@ -8,7 +8,7 @@ import { Color } from "../../styles/Color";
 export const SubTitleArea = ({ atom }: { atom: typeof subTitleAtom }) => {
   const [property, setProperty] = useAtom(atom);
 
-  const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setProperty({ ...property, content: event.target.value });
   };
 
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
 
 const FadeInWrapper = deriveFadeIn(Wrapper);
 
-const Input = styled.input`
+const Input = styled.textarea`
   box-sizing: border-box;
   width: 350px;
   border-radius: 3px;

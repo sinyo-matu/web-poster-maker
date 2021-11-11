@@ -48,7 +48,7 @@ const Canvas = styled.div`
 `;
 
 const PosterRoot = styled.div`
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
   position: relative;
   width: 100%;
   height: 100%;
