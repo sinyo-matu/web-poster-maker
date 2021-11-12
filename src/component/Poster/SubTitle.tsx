@@ -32,6 +32,7 @@ const Wrapper = styled.div`
 
 const SubContentWrapper = styled.div`
   font-size: calc(8px + 1vmin);
+  font-weight: bold;
   overflow-wrap: break-word;
   width: calc(100% - 1rem);
   align-self: flex-end;

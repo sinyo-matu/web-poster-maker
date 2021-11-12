@@ -21,11 +21,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  margin-top: 10px;
   margin-bottom: 10px;
 `;
 
 const SubContentWrapper = styled.div`
-  font-size: calc(14px + 2vmin);
+  font-size: calc(16px + 2vmin);
   font-family: "UNICA ONE";
   font-weight: bold;
   overflow-wrap: break-word;

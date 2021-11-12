@@ -107,6 +107,7 @@ const ImagePreview = styled.img<ImageProps>`
     props.imageWidth
       ? deriveImageSize(props.imageWidth)
       : deriveImageSize("md")}px;
+  max-width: 100%;
 `;
 const AreaTitle = styled.div`
   align-self: flex-start;

@@ -40,5 +40,5 @@ const TextGroupWrapper = styled.div`
 
 const Wrapper = styled.div`
   overflow-wrap: break-word;
-  font-size: calc(5px + 1vmin);
+  font-size: calc(8px + 1vmin);
 `;

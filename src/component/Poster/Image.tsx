@@ -35,6 +35,7 @@ const Wrapper = styled.div<WrapperProps>`
       ? deriveImageSize(props.imageWidth)
       : deriveImageSize("md")}px;
   display: flex;
+  max-width: 100%;
   flex-direction: column;
   align-items: center;
 `;
