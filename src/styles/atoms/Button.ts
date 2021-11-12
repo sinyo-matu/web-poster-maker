@@ -3,7 +3,6 @@ import { PopUp } from "../animation";
 import { Color } from "../Color";
 
 interface ButtonPropers {
-  name?: string;
   clicked?: boolean;
   buttontype?: "circle" | "pill";
   selected?: boolean;

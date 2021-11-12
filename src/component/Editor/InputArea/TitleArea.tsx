@@ -1,12 +1,12 @@
 import { useAtom } from "jotai";
 import React from "react";
 import styled from "styled-components";
-import { titleAtom } from "../../lib/store";
-import { deriveFadeIn } from "../../styles/animation";
-import { Color } from "../../styles/Color";
+import { deriveFadeIn } from "../../../styles/animation";
+import { Color } from "../../../styles/Color";
+import { TitleTextType } from "../../../types/poster";
 
-export const TitleArea = ({ atom }: { atom: typeof titleAtom }) => {
-  const [text, setText] = useAtom(atom);
+export const TitleArea = ({ type }: { type: TitleTextType }) => {
+  const [text, setText] = useAtom(type.atom);
 
   const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText({ ...text, content: event.target.value });

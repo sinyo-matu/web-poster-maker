@@ -1,12 +1,12 @@
 import { useAtom } from "jotai";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { textsAtom } from "../../lib/store";
-import { deriveFadeIn } from "../../styles/animation";
-import { Color } from "../../styles/Color";
+import { deriveFadeIn } from "../../../styles/animation";
+import { Color } from "../../../styles/Color";
+import { TextGroupType } from "../../../types/poster";
 
-export const TextsArea = ({ atom }: { atom: typeof textsAtom }) => {
-  const [property, setProperty] = useAtom(atom);
+export const TextsArea = ({ type }: { type: TextGroupType }) => {
+  const [property, setProperty] = useAtom(type.atom);
   const [textContent, setTextContent] = useState(property.content);
   const handleTextsAreaOnChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>

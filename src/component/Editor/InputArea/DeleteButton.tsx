@@ -1,18 +1,30 @@
 import { useAtom } from "jotai";
 import styled from "styled-components";
-import { contentsAtomsAtom } from "../../lib/store";
-import { removeImage } from "../../lib/supabase";
-import { ButtonCompo } from "../ButtonCompo";
+import { contentsAtomsAtom } from "../../../lib/store";
+import { removeImage } from "../../../lib/supabase";
+import {
+  ImageType,
+  SubTitleTextType,
+  TextGroupType,
+  TitleTextType,
+} from "../../../types/poster";
+import { ButtonCompo } from "../../ButtonCompo";
 
-export const DeleteButton = ({ index }: { index: number }) => {
+export const DeleteButton = ({
+  index,
+  type,
+}: {
+  index: number;
+  type: TitleTextType | SubTitleTextType | TextGroupType | ImageType;
+}) => {
   const [contentsAtoms, setContentsAtoms] = useAtom(contentsAtomsAtom);
   const handleOnClick = async () => {
-    const property = JSON.parse(
-      localStorage.getItem(contentsAtoms[index].key)!
-    );
-    if (property.filePath) {
+    if (type.kind === "image") {
       try {
-        removeImage(property.filePath);
+        const property = JSON.parse(
+          localStorage.getItem(contentsAtoms[index].key)!
+        );
+        await removeImage(property.filePath);
       } catch (error: any) {
         alert(error);
       } finally {
@@ -28,7 +40,7 @@ export const DeleteButton = ({ index }: { index: number }) => {
   };
   return (
     <Wrapper>
-      <ButtonCompo type={"circle"} onClick={handleOnClick}>
+      <ButtonCompo type={"circle"} onClick={handleOnClick} animated={false}>
         −
       </ButtonCompo>
     </Wrapper>

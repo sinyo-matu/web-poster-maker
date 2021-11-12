@@ -1,12 +1,12 @@
 import { useAtom } from "jotai";
 import React from "react";
 import styled from "styled-components";
-import { deriveFadeIn } from "../../styles/animation";
-import { subTitleAtom } from "../../lib/store";
-import { Color } from "../../styles/Color";
+import { deriveFadeIn } from "../../../styles/animation";
+import { Color } from "../../../styles/Color";
+import { SubTitleTextType } from "../../../types/poster";
 
-export const SubTitleArea = ({ atom }: { atom: typeof subTitleAtom }) => {
-  const [property, setProperty] = useAtom(atom);
+export const SubTitleArea = ({ type }: { type: SubTitleTextType }) => {
+  const [property, setProperty] = useAtom(type.atom);
 
   const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setProperty({ ...property, content: event.target.value });

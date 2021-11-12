@@ -7,6 +7,7 @@ interface Props {
   type?: "circle" | "pill";
   selected?: boolean;
   name?: string;
+  animated?: boolean;
 }
 
 export const ButtonCompo = ({
@@ -15,6 +16,7 @@ export const ButtonCompo = ({
   type,
   selected,
   name,
+  animated = true,
 }: Props) => {
   const [clicked, setClicked] = useState(false);
   const handleOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -22,12 +24,12 @@ export const ButtonCompo = ({
       onClick(event, name);
     }
     setClicked(true);
-    setTimeout(() => setClicked(false), 500);
+    if (animated) setTimeout(() => setClicked(false), 500);
   };
   return (
     <Button
       name={name}
-      clicked={clicked}
+      clicked={animated && clicked}
       buttontype={type}
       onClick={handleOnClick}
       selected={selected}

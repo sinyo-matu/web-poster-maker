@@ -1,15 +1,15 @@
-import { PrimitiveAtom, useAtom } from "jotai";
+import { useAtom } from "jotai";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { deriveFadeIn, PopUp } from "../../styles/animation";
-import { Color } from "../../styles/Color";
-import { supabase } from "../../supabaseClient";
-import { ImageProperty } from "../../types/poster";
-import { downloadImage } from "../../lib/supabase";
+import { deriveFadeIn, PopUp } from "../../../../styles/animation";
+import { Color } from "../../../../styles/Color";
+import { supabase } from "../../../../supabaseClient";
+import { ImageType } from "../../../../types/poster";
+import { downloadImage } from "../../../../lib/supabase";
 import { ImageSizeRadioButton } from "./ImageSizeRadioButton";
-import { deriveImageSize, IMAGE_SIZE } from "../../styles/Size";
-export const ImageArea = ({ atom }: { atom: PrimitiveAtom<ImageProperty> }) => {
-  const [property, setProperty] = useAtom(atom);
+import { deriveImageSize, IMAGE_SIZE } from "../../../../styles/Size";
+export const ImageArea = ({ type }: { type: ImageType }) => {
+  const [property, setProperty] = useAtom(type.atom);
   const [uploading, setUploading] = useState(false);
   const [localUrl, setLocalUrl] = useState("");
   useEffect(() => {
@@ -74,10 +74,10 @@ export const ImageArea = ({ atom }: { atom: PrimitiveAtom<ImageProperty> }) => {
         />
       ) : null}
       <FileInputWrapper>
-        <FileInputLabel htmlFor={`${atom}`}>
+        <FileInputLabel htmlFor={`${type.atom}`}>
           {uploading ? "加载中" : "上传图片"}
           <FileInput
-            id={`${atom}`}
+            id={`${type.atom}`}
             type="file"
             accept="image/*"
             onChange={handleUpload}

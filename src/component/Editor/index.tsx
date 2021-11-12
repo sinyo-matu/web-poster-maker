@@ -2,56 +2,16 @@ import { useAtom } from "jotai";
 import React from "react";
 import styled from "styled-components";
 import { contentsAtomsAtom } from "../../lib/store";
-import { SubTitleArea } from "./SubTitleArea";
-import { TextsArea } from "./TextsArea";
-import { TitleArea } from "./TitleArea";
-import { AddButtons } from "./AddButtons";
-import { DeleteButton } from "./DeleteButton";
-import { ImageArea } from "./ImageArea";
+import { AddButtons } from "./InputArea/AddButtons";
+import { InputArea } from "./InputArea";
 export const Editor = () => {
   const [contentsAtoms] = useAtom(contentsAtomsAtom);
   return (
     <Wrapper>
       <AddButtons index={-1} />
-      {
-        // eslint-disable-next-line array-callback-return
-        contentsAtoms.map((atom, i) => {
-          switch (atom.kind) {
-            case "titleText":
-              return (
-                <InputCompoWrapper key={`${atom.atom}`}>
-                  <DeleteButton index={i} />
-                  <TitleArea atom={atom.atom} />
-                  <AddButtons index={i} />
-                </InputCompoWrapper>
-              );
-            case "subTitleText":
-              return (
-                <InputCompoWrapper key={`${atom.atom}`}>
-                  <DeleteButton index={i} />
-                  <SubTitleArea atom={atom.atom} />
-                  <AddButtons index={i} />
-                </InputCompoWrapper>
-              );
-            case "textGroup":
-              return (
-                <InputCompoWrapper key={`${atom.atom}`}>
-                  <DeleteButton index={i} />
-                  <TextsArea atom={atom.atom} />
-                  <AddButtons index={i} />
-                </InputCompoWrapper>
-              );
-            case "image":
-              return (
-                <InputCompoWrapper key={`${atom.atom}`}>
-                  <DeleteButton index={i} />
-                  <ImageArea atom={atom.atom} />
-                  <AddButtons index={i} />
-                </InputCompoWrapper>
-              );
-          }
-        })
-      }
+      {contentsAtoms.map((type, i) => {
+        return <InputArea key={i} type={type} index={i} />;
+      })}
     </Wrapper>
   );
 };
@@ -63,8 +23,4 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 80px 0px;
-`;
-
-const InputCompoWrapper = styled.div`
-  position: relative;
 `;

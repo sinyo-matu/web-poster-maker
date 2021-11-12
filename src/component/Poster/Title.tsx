@@ -9,8 +9,8 @@ export const Title = ({ atom }: { atom: typeof titleAtom }) => {
   }
   return (
     <Wrapper>
-      {content.content.split("\n").map((content) => {
-        return <SubContentWrapper>{content}</SubContentWrapper>;
+      {content.content.split("\n").map((content, i) => {
+        return <SubContentWrapper key={i}>{content}</SubContentWrapper>;
       })}
     </Wrapper>
   );

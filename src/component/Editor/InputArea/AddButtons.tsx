@@ -1,17 +1,17 @@
 import { useAtom } from "jotai";
-import { atomWithStorage } from "../../lib/utility";
+import { atomWithStorage } from "../../../lib/utility";
 import styled from "styled-components";
-import { contentsAtomsAtom } from "../../lib/store";
-import { random } from "../../lib/utility";
-import { Color } from "../../styles/Color";
-import { ButtonCompo } from "../ButtonCompo";
+import { contentsAtomsAtom } from "../../../lib/store";
+import { random } from "../../../lib/utility";
+import { Color } from "../../../styles/Color";
+import { ButtonCompo } from "../../ButtonCompo";
 import {
   ImageProperty,
   ImageType,
   SubTitleTextType,
   TextGroupType,
   TitleTextType,
-} from "../../types/poster";
+} from "../../../types/poster";
 
 export const AddButtons = ({ index }: { index: number }) => {
   const [contentsAtoms, setContentsAtoms] = useAtom(contentsAtomsAtom);
