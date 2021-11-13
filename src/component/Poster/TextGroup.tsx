@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
 import styled from "styled-components";
 import { textsAtom } from "../../lib/store";
+import TextWrapper from "../../styles/atoms/TextWrapper";
 export const TextGroup = ({ atom }: { atom: typeof textsAtom }) => {
   const [property] = useAtom(atom);
   if (!property.content) {
@@ -38,7 +39,6 @@ const TextGroupWrapper = styled.div`
   gap: 8px;
 `;
 
-const Wrapper = styled.div`
-  overflow-wrap: break-word;
+const Wrapper = styled(TextWrapper)`
   font-size: calc(8px + 1vmin);
 `;

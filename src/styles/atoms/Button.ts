@@ -8,7 +8,7 @@ interface ButtonPropers {
   selected?: boolean;
 }
 
-export const Button = styled.button<ButtonPropers>`
+const Button = styled.button<ButtonPropers>`
   display: inline-block;
   background-color: ${(props) => (props.selected ? Color.MAIN : "white")};
   width: 100%;
@@ -24,10 +24,14 @@ export const Button = styled.button<ButtonPropers>`
   box-shadow: 0px 0px 1px ${Color.MAIN};
   transition: 0.2s;
   ${(props) => (props.clicked ? PopUp : null)};
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background-color: ${Color.MAIN};
     color: white;
     border-color: ${Color.MAIN};
     box-shadow: 0px 0px 3px ${Color.MAIN};
+    outline: 0px;
   }
 `;
+
+export default Button;

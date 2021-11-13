@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 import React from "react";
 import styled from "styled-components";
 import { subTitleAtom } from "../../lib/store";
+import TextWrapper from "../../styles/atoms/TextWrapper";
 export const SubTitle = ({ atom }: { atom: typeof subTitleAtom }) => {
   const [content] = useAtom(atom);
   if (!content) {
@@ -30,10 +31,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const SubContentWrapper = styled.div`
+const SubContentWrapper = styled(TextWrapper)`
   font-size: calc(8px + 1vmin);
   font-weight: bold;
-  overflow-wrap: break-word;
   width: calc(100% - 1rem);
   align-self: flex-end;
   justify-self: center;

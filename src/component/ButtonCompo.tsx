@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "../styles/atoms/Button";
+import Button from "../styles/atoms/Button";
 
 interface Props {
   children?: React.ReactElement | string;

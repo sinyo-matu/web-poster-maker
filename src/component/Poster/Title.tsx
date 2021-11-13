@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 import styled from "styled-components";
 import { titleAtom } from "../../lib/store";
 import { Color } from "../../styles/Color";
+import TextWrapper from "../../styles/atoms/TextWrapper";
 export const Title = ({ atom }: { atom: typeof titleAtom }) => {
   const [content] = useAtom(atom);
   if (!content) {
@@ -25,12 +26,10 @@ const Wrapper = styled.div`
   margin-bottom: 10px;
 `;
 
-const SubContentWrapper = styled.div`
+const SubContentWrapper = styled(TextWrapper)`
   font-size: calc(16px + 2vmin);
   font-family: "UNICA ONE";
   font-weight: bold;
-  overflow-wrap: break-word;
-  width: 100%;
   text-align: center;
   justify-self: center;
   color: ${Color.MAIN};
