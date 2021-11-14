@@ -31,12 +31,14 @@ export const TextGroup = ({ atom }: { atom: typeof textsAtom }) => {
 };
 
 const TextGroupWrapper = styled.div`
+  background-color: inherit;
   width: 100%;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 8px;
+  z-index: 2;
 `;
 
 const Wrapper = styled(TextWrapper)`

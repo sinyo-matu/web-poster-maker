@@ -64,7 +64,6 @@ const Wrapper = styled.div`
   position: relative;
   margin-top: 20px;
   min-height: 20px;
-  background-color: white;
   width: 350px;
   &:before {
     content: "";
@@ -83,7 +82,7 @@ const Wrapper = styled.div`
     height: 25px;
     text-align: center;
     width: 25px;
-    background-color: white;
+    background-color: ${Color.Default};
     border-radius: 50%;
     text-align: center;
     border: 1px solid ${Color.MAIN};

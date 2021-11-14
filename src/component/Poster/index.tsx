@@ -68,6 +68,7 @@ const Canvas = styled.div`
 `;
 
 const PosterRoot = styled.div`
+  background-color: transparent;
   padding: 10px 17px 0px 17px;
   position: relative;
   width: 100%;
@@ -79,6 +80,7 @@ const PosterRoot = styled.div`
   border: 8px solid ${Color.MAIN};
 `;
 const ContentWrapper = styled.div`
+  background-color: inherit;
   flex-grow: 1;
   padding: 0 5px;
   width: 100%;

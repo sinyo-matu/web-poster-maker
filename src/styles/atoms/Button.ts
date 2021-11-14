@@ -10,7 +10,7 @@ interface ButtonPropers {
 
 const Button = styled.button<ButtonPropers>`
   display: inline-block;
-  background-color: ${(props) => (props.selected ? Color.MAIN : "white")};
+  background-color: ${(props) => (props.selected ? Color.MAIN : Color.Default)};
   width: 100%;
   height: 100%;
   min-height: 20px;
@@ -18,7 +18,7 @@ const Button = styled.button<ButtonPropers>`
   border: 1px solid ${Color.MAIN};
   border-radius: ${(props) =>
     props.buttontype === "circle" ? "50%" : "9999px"};
-  color: ${(props) => (props.selected ? "white" : Color.MAIN)};
+  color: ${(props) => (props.selected ? Color.Default : Color.MAIN)};
   text-align: center;
   cursor: pointer;
   box-shadow: 0px 0px 1px ${Color.MAIN};
@@ -27,7 +27,7 @@ const Button = styled.button<ButtonPropers>`
   &:hover,
   &:focus-visible {
     background-color: ${Color.MAIN};
-    color: white;
+    color: ${Color.Default};
     border-color: ${Color.MAIN};
     box-shadow: 0px 0px 3px ${Color.MAIN};
     outline: 0px;

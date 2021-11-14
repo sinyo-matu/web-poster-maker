@@ -18,6 +18,7 @@ export const Title = ({ atom }: { atom: typeof titleAtom }) => {
 };
 
 const Wrapper = styled.div`
+  background-color: inherit;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -129,7 +129,6 @@ interface LabelPropers {
 const FileInputLabel = styled.label<LabelPropers>`
   flex-grow: 1;
   display: inline-block;
-  background-color: white;
   min-height: 20px;
   min-width: 20px;
   padding: 5px;

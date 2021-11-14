@@ -18,6 +18,8 @@ export const SubTitle = ({ atom }: { atom: typeof subTitleAtom }) => {
 };
 
 const Wrapper = styled.div`
+  z-index: 2;
+  background-color: inherit;
   position: relative;
   width: 100%;
   align-self: flex-start;

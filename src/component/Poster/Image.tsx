@@ -38,6 +38,8 @@ const Wrapper = styled.div<WrapperProps>`
   max-width: 100%;
   flex-direction: column;
   align-items: center;
+  background-color: transparent;
+  z-index: 2;
 `;
 const ImageView = styled.img`
   width: 100%;
