@@ -42,6 +42,7 @@ export const InputArea = ({
 };
 
 const InputCompoWrapper = styled.div`
+  width: 70%;
   margin-top: 5px;
   position: relative;
 `;

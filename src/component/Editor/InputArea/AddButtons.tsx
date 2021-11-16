@@ -63,8 +63,11 @@ export const AddButtons = ({ index }: { index: number }) => {
 const Wrapper = styled.div`
   position: relative;
   margin-top: 20px;
+  width: 100%;
   min-height: 20px;
-  width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:before {
     content: "";
     position: absolute;
@@ -108,10 +111,11 @@ const Wrapper = styled.div`
 
 const ButtonsWrapper = styled.div`
   height: 30px;
-  width: 350px;
   display: flex;
+  width: 80%;
   flex-direction: row;
   justify-content: center;
+
   align-items: center;
   transform: scaleY(0) scaleX(0);
   opacity: 0;

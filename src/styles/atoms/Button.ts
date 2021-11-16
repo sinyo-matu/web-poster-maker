@@ -21,16 +21,17 @@ const Button = styled.button<ButtonPropers>`
   color: ${(props) => (props.selected ? Color.Default : Color.MAIN)};
   text-align: center;
   cursor: pointer;
-  box-shadow: 0px 0px 1px ${Color.MAIN};
+  box-shadow: 0px 0px 3px -1px ${Color.MAIN};
   transition: 0.2s;
   ${(props) => (props.clicked ? PopUp : null)};
   &:hover,
   &:focus-visible {
-    background-color: ${Color.MAIN};
-    color: ${Color.Default};
-    border-color: ${Color.MAIN};
-    box-shadow: 0px 0px 3px ${Color.MAIN};
-    outline: 0px;
+    box-shadow: 0px 0px 5px -1px;
+    transform: scale(1.2);
+  }
+  &:focus-visible {
+    outline-offset: 0.15rem;
+    outline-color: ${Color.SUB};
   }
 `;
 

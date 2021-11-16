@@ -8,7 +8,9 @@ export const Editor = () => {
   const [contentsAtoms] = useAtom(contentsAtomsAtom);
   return (
     <Wrapper>
-      <AddButtons index={-1} />
+      <TopLevelAddButtonsWrapper>
+        <AddButtons index={-1} />
+      </TopLevelAddButtonsWrapper>
       {contentsAtoms.map((type, i) => {
         return <InputArea key={i} type={type} index={i} />;
       })}
@@ -18,9 +20,14 @@ export const Editor = () => {
 
 const Wrapper = styled.div`
   position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 80px 0px;
+`;
+
+const TopLevelAddButtonsWrapper = styled.div`
+  width: 70%;
 `;
