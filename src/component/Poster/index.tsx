@@ -48,23 +48,26 @@ export const Poster = () => {
           <Logo src={logo} alt="logo"></Logo>
         </PosterRoot>
       </Canvas>
-      <DownLoadButtonWrapper>
+      <ControlGroupWrapper>
         <ButtonCompo onClick={handleOnClick}>下载</ButtonCompo>
-      </DownLoadButtonWrapper>
+      </ControlGroupWrapper>
     </>
   );
 };
 
-const Canvas = styled.div`
+interface CanvasProps {
+  width?: number;
+}
+
+const Canvas = styled.div<CanvasProps>`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
   margin: 50px 0px;
-  width: 600px;
+  width: ${(props) => (props.width ? props.width : 600)}px;
   min-height: 667px;
-  padding: 50px 30px;
 `;
 
 const PosterRoot = styled.div`
@@ -97,4 +100,4 @@ const Logo = styled.img`
   margin: 10px 0px;
 `;
 
-const DownLoadButtonWrapper = styled.div``;
+const ControlGroupWrapper = styled.div``;
