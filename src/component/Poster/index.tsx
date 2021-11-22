@@ -62,7 +62,7 @@ const Canvas = styled.div`
   justify-content: center;
   align-items: center;
   margin: 50px 0px;
-  width: 500px;
+  width: 600px;
   min-height: 667px;
   padding: 50px 30px;
 `;
