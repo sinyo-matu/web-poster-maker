@@ -11,7 +11,7 @@ const Input = styled.textarea`
   border-radius: 8px;
   border: 1px solid ${Color.MAIN};
   transition: box-shadow 0.25s ease-in-out;
-  &:focus-visible,
+  &:focus,
   &:hover {
     box-shadow: 0px 0px 5px ${Color.SUB};
     border-color: ${Color.MAIN};

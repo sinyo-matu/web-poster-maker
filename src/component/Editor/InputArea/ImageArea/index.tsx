@@ -7,7 +7,7 @@ import { supabase } from "../../../../supabaseClient";
 import { ImageType } from "../../../../types/poster";
 import { downloadImage } from "../../../../lib/supabase";
 import { ImageSizeRadioButton } from "./ImageSizeRadioButton";
-import { deriveImageSize, IMAGE_SIZE } from "../../../../styles/Size";
+import { IMAGE_SIZE } from "../../../../styles/Size";
 export const ImageArea = ({ type }: { type: ImageType }) => {
   const [property, setProperty] = useAtom(type.atom);
   const [uploading, setUploading] = useState(false);
@@ -47,16 +47,16 @@ export const ImageArea = ({ type }: { type: ImageType }) => {
     let size: IMAGE_SIZE;
     switch (name) {
       case "sm":
-        size = "sm";
+        size = IMAGE_SIZE.SM;
         break;
       case "md":
-        size = "md";
+        size = IMAGE_SIZE.MD;
         break;
       case "lg":
-        size = "lg";
+        size = IMAGE_SIZE.LG;
         break;
       default:
-        size = "md";
+        size = IMAGE_SIZE.MD;
     }
     setProperty({ ...property, size: size });
   };
@@ -102,10 +102,7 @@ interface ImageProps {
   imageWidth?: IMAGE_SIZE;
 }
 const ImagePreview = styled.img<ImageProps>`
-  width: ${(props) =>
-    props.imageWidth
-      ? deriveImageSize(props.imageWidth)
-      : deriveImageSize("md")}px;
+  width: ${(props) => (props.imageWidth ? props.imageWidth : IMAGE_SIZE.MD)}px;
   max-width: 100%;
 `;
 const AreaTitle = styled.div`

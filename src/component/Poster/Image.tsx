@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { downloadImage } from "../../lib/supabase";
 import placeholderPic from "../../placeholder.png";
-import { deriveImageSize, IMAGE_SIZE } from "../../styles/Size";
+import { IMAGE_SIZE } from "../../styles/Size";
 import { ImageProperty } from "../../types/poster";
 
 export const Image = ({ atom }: { atom: PrimitiveAtom<ImageProperty> }) => {
@@ -30,10 +30,7 @@ interface WrapperProps {
 }
 
 const Wrapper = styled.div<WrapperProps>`
-  width: ${(props) =>
-    props.imageWidth
-      ? deriveImageSize(props.imageWidth)
-      : deriveImageSize("md")}px;
+  width: ${(props) => (props.imageWidth ? props.imageWidth : IMAGE_SIZE.MD)}px;
   display: flex;
   max-width: 100%;
   flex-direction: column;

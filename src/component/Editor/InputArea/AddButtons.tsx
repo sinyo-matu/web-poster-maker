@@ -12,6 +12,7 @@ import {
   TextGroupType,
   TitleTextType,
 } from "../../../types/poster";
+import { IMAGE_SIZE } from "../../../styles/Size";
 
 export const AddButtons = ({ index }: { index: number }) => {
   const [contentsAtoms, setContentsAtoms] = useAtom(contentsAtomsAtom);
@@ -41,7 +42,7 @@ export const AddButtons = ({ index }: { index: number }) => {
     const imageAtom = atomWithStorage<ImageProperty>(key, {
       filename: "",
       filePath: "",
-      size: "sm",
+      size: IMAGE_SIZE.SM,
     });
     const image = new ImageType(key, imageAtom);
     contentsAtoms.splice(index + 1, 0, image);

@@ -23,13 +23,15 @@ const Button = styled.button<ButtonPropers>`
   cursor: pointer;
   box-shadow: 0px 0px 3px -1px ${Color.MAIN};
   transition: 0.2s;
+  --webkit-transition: 0.2s;
   ${(props) => (props.clicked ? PopUp : null)};
   &:hover,
-  &:focus-visible {
+  &:focus {
     box-shadow: 0px 0px 5px -1px;
     transform: scale(1.2);
+    -webkit-transform: scale(1.2);
   }
-  &:focus-visible {
+  &:focus {
     outline-offset: 0.15rem;
     outline-color: ${Color.SUB};
   }

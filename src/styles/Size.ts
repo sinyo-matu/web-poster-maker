@@ -1,19 +1,8 @@
-const IMAGE_SM = 250;
-const IMAGE_MD = 300;
-const IMAGE_LG = 400;
-
-export type IMAGE_SIZE = "sm" | "md" | "lg";
-
-export const deriveImageSize = (size: IMAGE_SIZE) => {
-  switch (size) {
-    case "sm":
-      return IMAGE_SM;
-    case "md":
-      return IMAGE_MD;
-    case "lg":
-      return IMAGE_LG;
-  }
-};
+export enum IMAGE_SIZE {
+  SM = 250,
+  MD = 300,
+  LG = 400,
+}
 
 const WINDOW_SIZE = {
   MobileS: "320px",
@@ -24,13 +13,14 @@ const WINDOW_SIZE = {
   LaptopL: "1440px",
   Desktop: "2560px",
 };
+
 export const device = {
-  mobileS: `(min-width: ${WINDOW_SIZE.MobileS})`,
-  mobileM: `(min-width: ${WINDOW_SIZE.MobileM})`,
-  mobileL: `(min-width: ${WINDOW_SIZE.MobileL})`,
-  tablet: `(min-width: ${WINDOW_SIZE.Tablet})`,
-  laptop: `(min-width: ${WINDOW_SIZE.Laptop})`,
-  laptopL: `(min-width: ${WINDOW_SIZE.LaptopL})`,
-  desktop: `(min-width: ${WINDOW_SIZE.Desktop})`,
-  desktopL: `(min-width: ${WINDOW_SIZE.Desktop})`,
+  MobileS: `(min-width: ${WINDOW_SIZE.MobileS})`,
+  MobileM: `(min-width: ${WINDOW_SIZE.MobileM})`,
+  MobileL: `(min-width: ${WINDOW_SIZE.MobileL})`,
+  Tablet: `(min-width: ${WINDOW_SIZE.Tablet})`,
+  Laptop: `(min-width: ${WINDOW_SIZE.Laptop})`,
+  LaptopL: `(min-width: ${WINDOW_SIZE.LaptopL})`,
+  Desktop: `(min-width: ${WINDOW_SIZE.Desktop})`,
+  DesktopL: `(min-width: ${WINDOW_SIZE.Desktop})`,
 };
