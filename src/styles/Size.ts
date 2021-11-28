@@ -1,7 +1,7 @@
 export enum IMAGE_SIZE {
-  SM = 250,
-  MD = 300,
-  LG = 400,
+  SM = 300,
+  MD = 400,
+  LG = 550,
 }
 
 const WINDOW_SIZE = {

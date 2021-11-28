@@ -5,8 +5,8 @@ import { Color } from "../../styles/Color";
 import { useAtom } from "jotai";
 import { contentsAtomsAtom } from "../../lib/store";
 import { Title } from "./Title";
-import { SubTitle } from "./SubTitle";
 import { Image } from "./Image";
+import { SubTitle } from "./SubTitle";
 import { ButtonCompo } from "../ButtonCompo";
 import html2canvas from "html2canvas";
 export const Poster = () => {
