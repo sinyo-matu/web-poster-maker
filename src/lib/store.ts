@@ -1,4 +1,4 @@
-import { PrimitiveAtom } from "jotai";
+import { atom, PrimitiveAtom } from "jotai";
 import {
   ImageProperty,
   ImageType,
@@ -9,7 +9,7 @@ import {
   TitleProperty,
   TitleTextType,
 } from "../types/poster";
-import { atomWithStorage } from "./utility";
+import { atomWithStorage, getYearMonthDay } from "./utility";
 
 const textsKey = `texts-init`;
 export const textsAtom = atomWithStorage<TextGroupProperty>(textsKey, {
@@ -88,4 +88,20 @@ export const contentsAtomsAtom = atomWithStorage<
     });
     return types;
   },
+});
+
+export const posterTitleAtom = atom<String>((get) => {
+  const [year, month, day] = getYearMonthDay();
+  const suffix = `${year}-${month}-${day}`;
+  const titleTypes = get(contentsAtomsAtom).filter(
+    (type): type is TitleTextType => type.kind === "titleText"
+  );
+  if (titleTypes.length === 0) {
+    return `poster_${suffix}`;
+  }
+  const firstTitle = get(titleTypes[0].atom);
+  if (firstTitle.content.length === 0) {
+    return `poster_${suffix}`;
+  }
+  return `${firstTitle.content}_${suffix}`;
 });

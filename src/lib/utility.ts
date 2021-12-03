@@ -72,3 +72,8 @@ export function atomWithStorage<Value>(
 
   return anAtom;
 }
+
+export function getYearMonthDay() {
+  const date = new Date();
+  return [date.getFullYear(), date.getMonth(), date.getDate()];
+}

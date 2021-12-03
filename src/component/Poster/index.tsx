@@ -3,7 +3,7 @@ import { TextGroup } from "./TextGroup";
 import logo from "../../PH-Logo-R2.png";
 import { Color } from "../../styles/Color";
 import { useAtom } from "jotai";
-import { contentsAtomsAtom } from "../../lib/store";
+import { contentsAtomsAtom, posterTitleAtom } from "../../lib/store";
 import { Title } from "./Title";
 import { Image } from "./Image";
 import { SubTitle } from "./SubTitle";
@@ -11,16 +11,14 @@ import { ButtonCompo } from "../ButtonCompo";
 import html2canvas from "html2canvas";
 export const Poster = () => {
   const [contentsAtoms] = useAtom(contentsAtomsAtom);
+  const [posterTitle] = useAtom(posterTitleAtom);
   const handleOnClick = async () => {
     const canvas = await html2canvas(
       document.querySelector("#poster-root")!,
       {}
     );
     const link = document.createElement("a");
-    const date = new Date();
-    link.download = `poster_${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()}.jpg`;
+    link.download = `${posterTitle}.jpg`;
     link.href = canvas.toDataURL();
     link.click();
   };
