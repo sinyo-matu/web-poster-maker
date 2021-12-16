@@ -28,7 +28,6 @@ export const ButtonCompo = ({
   };
   return (
     <Button
-      name={name}
       clicked={animated && clicked}
       buttontype={type}
       onClick={handleOnClick}

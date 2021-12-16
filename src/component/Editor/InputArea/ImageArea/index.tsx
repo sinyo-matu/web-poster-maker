@@ -5,7 +5,7 @@ import { deriveFadeIn, PopUp } from "../../../../styles/animation";
 import { Color } from "../../../../styles/Color";
 import { supabase } from "../../../../supabaseClient";
 import { ImageType } from "../../../../types/poster";
-import { downloadImage } from "../../../../lib/supabase";
+import { downloadImage, removeImage } from "../../../../lib/supabase";
 import { ImageSizeRadioButton } from "./ImageSizeRadioButton";
 import { IMAGE_SIZE } from "../../../../styles/Size";
 export const ImageArea = ({ type }: { type: ImageType }) => {
@@ -35,6 +35,7 @@ export const ImageArea = ({ type }: { type: ImageType }) => {
       if (uploadError) {
         throw uploadError;
       }
+      if (property.filename !== "") removeImage(property.filePath);
       setProperty({ ...property, filename: file.name, filePath: filePath });
     } catch (error: any) {
       alert(error.message);
