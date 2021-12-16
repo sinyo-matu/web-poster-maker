@@ -64,6 +64,7 @@ const Canvas = styled.div<CanvasProps>`
   justify-content: center;
   align-items: center;
   margin: 50px 0px;
+  padding: 30px;
   width: ${(props) => (props.width ? props.width : 600)}px;
   min-height: 667px;
 `;
