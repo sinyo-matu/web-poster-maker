@@ -7,7 +7,7 @@ export const ImageSizeRadioButton = ({
 }: {
   onSelected?: (name: string) => void;
 }) => {
-  const [selected, setSelected] = useState("sm");
+  const [selected, setSelected] = useState("lg");
 
   const handleOnClick = (
     _event: React.MouseEvent<HTMLButtonElement>,
