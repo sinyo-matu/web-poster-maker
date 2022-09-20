@@ -42,7 +42,7 @@ export const AddButtons = ({ index }: { index: number }) => {
     const imageAtom = atomWithStorage<ImageProperty>(key, {
       filename: "",
       filePath: "",
-      size: IMAGE_SIZE.SM,
+      size: IMAGE_SIZE.LG,
     });
     const image = new ImageType(key, imageAtom);
     contentsAtoms.splice(index + 1, 0, image);
