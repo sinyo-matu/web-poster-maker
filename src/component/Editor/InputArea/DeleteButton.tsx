@@ -40,7 +40,12 @@ export const DeleteButton = ({
   };
   return (
     <Wrapper>
-      <ButtonCompo type={"circle"} onClick={handleOnClick} animated={false}>
+      <ButtonCompo
+        height="21px"
+        type={"circle"}
+        onClick={handleOnClick}
+        animated={false}
+      >
         −
       </ButtonCompo>
     </Wrapper>

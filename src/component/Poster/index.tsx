@@ -3,24 +3,37 @@ import { TextGroup } from "./TextGroup";
 import logo from "../../PH-Logo-R2.png";
 import { Color } from "../../styles/Color";
 import { useAtom } from "jotai";
-import { contentsAtomsAtom, posterTitleAtom } from "../../lib/store";
+import {
+  addToSavedPosterAtom,
+  contentsAtomsAtom,
+  posterTitleAtom,
+} from "../../lib/store";
 import { Title } from "./Title";
 import { Image } from "./Image";
 import { SubTitle } from "./SubTitle";
 import { ButtonCompo } from "../ButtonCompo";
 import html2canvas from "html2canvas";
+import { useUpdateAtom } from "jotai/utils";
+import { getYearMonthDay } from "../../lib/utility";
 export const Poster = () => {
   const [contentsAtoms] = useAtom(contentsAtomsAtom);
   const [posterTitle] = useAtom(posterTitleAtom);
+  const addToSavedPosters = useUpdateAtom(addToSavedPosterAtom);
   const handleOnClick = async () => {
+    const [year, month, day] = getYearMonthDay();
+    const suffix = `${year}-${month}-${day}`;
     const canvas = await html2canvas(
       document.querySelector("#poster-root")!,
       {}
     );
     const link = document.createElement("a");
-    link.download = `${posterTitle}.jpg`;
+    link.download = `${posterTitle}_${suffix}.jpg`;
     link.href = canvas.toDataURL();
     link.click();
+  };
+  const handleSaveOnClick = () => {
+    const saveTitle = `${posterTitle}_${new Date().toISOString()}`;
+    addToSavedPosters(saveTitle);
   };
   return (
     <>
@@ -32,13 +45,13 @@ export const Poster = () => {
               contentsAtoms.map((atom) => {
                 switch (atom.kind) {
                   case "titleText":
-                    return <Title key={`${atom.atom}`} atom={atom.atom} />;
+                    return <Title key={`${atom.key}`} atom={atom.atom} />;
                   case "subTitleText":
-                    return <SubTitle key={`${atom.atom}`} atom={atom.atom} />;
+                    return <SubTitle key={`${atom.key}`} atom={atom.atom} />;
                   case "textGroup":
-                    return <TextGroup key={`${atom.atom}`} atom={atom.atom} />;
+                    return <TextGroup key={`${atom.key}`} atom={atom.atom} />;
                   case "image":
-                    return <Image key={`${atom.atom}`} atom={atom.atom} />;
+                    return <Image key={`${atom.key}`} atom={atom.atom} />;
                 }
               })
             }
@@ -48,6 +61,7 @@ export const Poster = () => {
       </Canvas>
       <ControlGroupWrapper>
         <ButtonCompo onClick={handleOnClick}>下载</ButtonCompo>
+        <ButtonCompo onClick={handleSaveOnClick}>保存</ButtonCompo>
       </ControlGroupWrapper>
     </>
   );
@@ -98,4 +112,7 @@ const Logo = styled.img`
   margin: 10px 0px;
 `;
 
-const ControlGroupWrapper = styled.div``;
+const ControlGroupWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+`;

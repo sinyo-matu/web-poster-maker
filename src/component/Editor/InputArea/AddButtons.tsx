@@ -78,7 +78,7 @@ const Wrapper = styled.div`
     top: 50%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
-    z-index: 100;
+    z-index: 10;
     transition: opacity 0.5s;
   }
   &:after {
@@ -96,7 +96,7 @@ const Wrapper = styled.div`
     left: 50%;
     transform: translateY(-50%) translateX(-45%);
     transition: opacity 0.5s;
-    z-index: 101;
+    z-index: 11;
   }
 
   &:hover::after {

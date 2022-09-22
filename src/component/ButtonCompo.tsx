@@ -8,6 +8,7 @@ interface Props {
   selected?: boolean;
   name?: string;
   animated?: boolean;
+  height?: string;
 }
 
 export const ButtonCompo = ({
@@ -16,6 +17,7 @@ export const ButtonCompo = ({
   type,
   selected,
   name,
+  height,
   animated = true,
 }: Props) => {
   const [clicked, setClicked] = useState(false);
@@ -32,6 +34,7 @@ export const ButtonCompo = ({
       buttontype={type}
       onClick={handleOnClick}
       selected={selected}
+      height={height}
     >
       {children}
     </Button>
