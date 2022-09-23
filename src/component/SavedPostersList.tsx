@@ -17,7 +17,6 @@ export const SavedPostersList = () => {
     removeFromSavedPosters(title);
   };
   const handleTitleOnClick = (title: string) => {
-    console.log("clicked");
     setContentsAtoms(title);
   };
   return (
