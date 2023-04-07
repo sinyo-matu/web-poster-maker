@@ -24,7 +24,7 @@ export const DeleteButton = ({
         const property = JSON.parse(
           localStorage.getItem(contentsAtoms[index].key)!
         );
-        await removeImage(property.filePath);
+        // await removeImage(property.filePath); // if removed the saved item will lost it's image
       } catch (error: any) {
         alert(error);
       } finally {

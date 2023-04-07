@@ -31,7 +31,7 @@ export const ImageArea = ({ type }: { type: ImageType }) => {
       const file = new File([rawFile], fileName, { type: rawFile.type });
       await uploadImage(file);
       if (property.filename !== "") removeImage(property.filePath);
-      setProperty({ ...property, filename: file.name, filePath: filePath });
+      setProperty({ ...property, filename: rawFile.name, filePath: filePath });
     } catch (error: any) {
       alert(error.message);
     } finally {
