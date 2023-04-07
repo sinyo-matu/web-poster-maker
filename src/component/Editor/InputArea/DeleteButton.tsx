@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import styled from "styled-components";
 import { contentsAtomsAtom } from "../../../lib/store";
-import { removeImage } from "../../../lib/supabase";
+import { removeImage } from "../../../lib/image";
 import {
   ImageType,
   SubTitleTextType,

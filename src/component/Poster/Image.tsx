@@ -1,7 +1,7 @@
 import { PrimitiveAtom, useAtom } from "jotai";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { downloadImage } from "../../lib/supabase";
+import { downloadImage } from "../../lib/image";
 import placeholderPic from "../../placeholder.png";
 import { IMAGE_SIZE } from "../../styles/Size";
 import { ImageProperty } from "../../types/poster";

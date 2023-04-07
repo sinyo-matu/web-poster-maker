@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { deriveFadeIn, PopUp } from "../../../../styles/animation";
 import { Color } from "../../../../styles/Color";
-import { supabase } from "../../../../supabaseClient";
 import { ImageType } from "../../../../types/poster";
-import { downloadImage, removeImage } from "../../../../lib/supabase";
+import { downloadImage, removeImage } from "../../../../lib/image";
 import { ImageSizeRadioButton } from "./ImageSizeRadioButton";
 import { IMAGE_SIZE } from "../../../../styles/Size";
+import { uploadImage } from "../../../../lib/image";
 export const ImageArea = ({ type }: { type: ImageType }) => {
   const [property, setProperty] = useAtom(type.atom);
   const [uploading, setUploading] = useState(false);
@@ -24,17 +24,12 @@ export const ImageArea = ({ type }: { type: ImageType }) => {
       if (!event.target.files || event.target.files.length === 0) {
         throw new Error("请选择需要上传的图片");
       }
-      const file = event.target.files[0];
-      const fileExt = file.name.split(".").pop();
+      const rawFile = event.target.files[0];
+      const fileExt = rawFile.name.split(".").pop();
       const fileName = `${Math.random()}.${fileExt}`;
       const filePath = `${fileName}`;
-
-      let { error: uploadError } = await supabase.storage
-        .from("poster-images")
-        .upload(filePath, file);
-      if (uploadError) {
-        throw uploadError;
-      }
+      const file = new File([rawFile], fileName, { type: rawFile.type });
+      await uploadImage(file);
       if (property.filename !== "") removeImage(property.filePath);
       setProperty({ ...property, filename: file.name, filePath: filePath });
     } catch (error: any) {
