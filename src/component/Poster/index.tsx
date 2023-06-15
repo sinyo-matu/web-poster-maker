@@ -27,8 +27,8 @@ export const Poster = () => {
       {}
     );
     const link = document.createElement("a");
-    link.download = `${posterTitle}_${suffix}.jpg`;
-    link.href = canvas.toDataURL();
+    link.download = `${posterTitle}_${suffix}.jpeg`;
+    link.href = canvas.toDataURL("image/jpeg");
     link.click();
   };
   const handleSaveOnClick = () => {
