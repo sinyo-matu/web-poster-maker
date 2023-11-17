@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { useUpdateAtom } from "jotai/utils";
+import { useSetAtom } from "jotai";
 import { showSavedModalAtom } from "../lib/store";
 import { ButtonCompo } from "./ButtonCompo";
 
 export const Header = () => {
-  const setShowSavedModal = useUpdateAtom(showSavedModalAtom);
+  const setShowSavedModal = useSetAtom(showSavedModalAtom);
   return (
     <Wrapper>
       <ButtonCompo animated={false} onClick={() => setShowSavedModal(true)}>

@@ -1,4 +1,4 @@
-import { useAtomValue, useUpdateAtom } from "jotai/utils";
+import { useAtomValue, useSetAtom } from "jotai";
 import React from "react";
 import styled from "styled-components";
 import {
@@ -10,8 +10,8 @@ import { Color } from "../styles/Color";
 import { ButtonCompo } from "./ButtonCompo";
 
 export const SavedPostersList = () => {
-  const removeFromSavedPosters = useUpdateAtom(remoteFromSavedPosterAtom);
-  const setContentsAtoms = useUpdateAtom(setContentsAtomsAtom);
+  const removeFromSavedPosters = useSetAtom(remoteFromSavedPosterAtom);
+  const setContentsAtoms = useSetAtom(setContentsAtomsAtom);
   const savedPosters = useAtomValue(savedPosterAtom);
   const handleXonClick = (title: string) => {
     removeFromSavedPosters(title);

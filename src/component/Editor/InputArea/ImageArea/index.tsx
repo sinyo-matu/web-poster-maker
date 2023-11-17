@@ -63,7 +63,11 @@ export const ImageArea = ({ type }: { type: ImageType }) => {
         图片{property.filename ? `:${property.filename}` : null}
       </AreaTitle>
       {localUrl ? (
-        <ImagePreview imageWidth={150} src={localUrl} alt="preview image" />
+        <ImagePreview
+          imageWidth={IMAGE_SIZE.LG}
+          src={localUrl}
+          alt="preview image"
+        />
       ) : null}
       <FileInputWrapper>
         <FileInputLabel htmlFor={`${type.atom}`}>

@@ -13,12 +13,17 @@ import { Image } from "./Image";
 import { SubTitle } from "./SubTitle";
 import { ButtonCompo } from "../ButtonCompo";
 import html2canvas from "html2canvas";
-import { useUpdateAtom } from "jotai/utils";
+import { useSetAtom } from "jotai";
 import { getYearMonthDay } from "../../lib/utility";
+
 export const Poster = () => {
   const [contentsAtoms] = useAtom(contentsAtomsAtom);
   const [posterTitle] = useAtom(posterTitleAtom);
-  const addToSavedPosters = useUpdateAtom(addToSavedPosterAtom);
+  const addToSavedPosters = useSetAtom(addToSavedPosterAtom);
+  const savePoster = (posterTitle: string) => {
+    const saveTitle = `${posterTitle}_${new Date().toISOString()}`;
+    addToSavedPosters(saveTitle);
+  };
   const handleOnClick = async () => {
     const [year, month, day] = getYearMonthDay();
     const suffix = `${year}-${month}-${day}`;
@@ -31,9 +36,21 @@ export const Poster = () => {
     link.href = canvas.toDataURL("image/jpeg");
     link.click();
   };
+  const handleSaveAndDownloadOnClick = async () => {
+    savePoster(posterTitle);
+    const [year, month, day] = getYearMonthDay();
+    const suffix = `${year}-${month}-${day}`;
+    const canvas = await html2canvas(
+      document.querySelector("#poster-root")!,
+      {}
+    );
+    const link = document.createElement("a");
+    link.download = `${posterTitle}_${suffix}.jpeg`;
+    link.href = canvas.toDataURL("image/jpeg");
+    link.click();
+  };
   const handleSaveOnClick = () => {
-    const saveTitle = `${posterTitle}_${new Date().toISOString()}`;
-    addToSavedPosters(saveTitle);
+    savePoster(posterTitle);
   };
   return (
     <>
@@ -62,6 +79,9 @@ export const Poster = () => {
       <ControlGroupWrapper>
         <ButtonCompo onClick={handleOnClick}>下载</ButtonCompo>
         <ButtonCompo onClick={handleSaveOnClick}>保存</ButtonCompo>
+        <ButtonCompo onClick={handleSaveAndDownloadOnClick}>
+          下载+保存
+        </ButtonCompo>
       </ControlGroupWrapper>
     </>
   );
